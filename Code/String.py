@@ -24,3 +24,11 @@ print("Python语言" in name)
 print("Y" in "Python语言")
 
 print(len(name),"\n",str(name),"\n",ord('P'),"\n",chr(80))
+
+print(hex(255))
+print(oct(-255))
+str = "Python 语言 程序 设计"
+print(str.split())
+print(name.center(40,"="))
+print("123".zfill(40))
+print("-123".zfill(40))
