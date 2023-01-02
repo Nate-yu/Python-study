@@ -338,3 +338,31 @@ Python
 | x in s         | 如果x是s的子串，返回True，否则返回False   |
 | str[i]         | 索引，返回第i个字符                       |
 | str[N: M]      | 切片，返回索引第N到第M的子串，其中不包含M |
+
+#### 内置的字符串处理函数
+
+| 函数   | 描述                                                |
+| ------ | --------------------------------------------------- |
+| len(x) | 返回字符串x的长度，也可返回其他组合数据类型元素个数 |
+| str(x) | 返回任意类型x所对应的字符串形式                     |
+| chr(x) | 返回Unicode编码x对应的单字符                        |
+| ord(x) | 返回单字符表示的Unicode编码                         |
+| hex(x) | 返回整数x对应十六进制的小写形式字符串               |
+| oct(x) | 返回整数x对应八进制数的小写形式字符串               |
+
+#### 内置的字符串处理方法
+
+| 方法                                 | 描述                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| str.lower()                          | 返回字符串str的副本，全部字符小写                            |
+| str.upper()                          | 返回字符串str的副本，全部字符大写                            |
+| str.islower()                        | 当str所有字符都是小写时，返回True，否则返回False             |
+| str.isnumeric()                      | 当str所有字符都是数字时，返回True，否则返回False             |
+| str.endswith(suffix[,start[,end]])   | str[start: end]以suffix结尾返回True，否则返回False           |
+| str.startswith(prefix[,start[,end]]) | str[start: end]以prefix开始返回True，否则返回False           |
+| str.split(sep = None, maxsplit = -1) | 返回一个列表，由str根据sep被分隔的部分构成，maxsplit为最大分割次数 |
+| str.count(sub[,start[,end]])         | 返回str[start: end]中sub子串出现的次数                       |
+| str.replace(old,new[,count])         | 返回字符串str的副本，所有old子串被替换为new，如果count给出，则前count次old出现被替换 |
+| str.center(width[,fillchar])         | 返回长度为width的字符串，其中，str处于新字符串中心位置，两侧新增字符采用fillchar填充，当width小于字符串长度时，返回str |
+| str.strip([chars])                   | 返回字符串str的副本，在其左侧和右侧去掉chars中列出的字符     |
+| str.zfill(width)                     | 返回字符串str的副本，长度为width，不足部分在左侧添0，但如果str最左侧是“+”或者“-”，则从第二个字符左侧添加“0”，当width小于字符串长度时，返回str |
