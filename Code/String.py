@@ -22,3 +22,5 @@ name = "Python语言"+"程序设计"+"基础"
 print("GOAL!"*3)
 print("Python语言" in name)
 print("Y" in "Python语言")
+
+print(len(name),"\n",str(name),"\n",ord('P'),"\n",chr(80))
