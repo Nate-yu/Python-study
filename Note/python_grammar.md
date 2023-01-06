@@ -505,3 +505,112 @@ elif <条件2>：
 else:
     <语句块N>
 ```
+
+### 2 循环结构
+
+#### 遍历循环：for语句
+
+使用方法：
+
+```python
+for <循环变量> in <遍历结构>:
+    <语句块>
+```
+
+for语句的循环执行次数是根据遍历结构中元素个数确定的，遍历循环可以理解为从遍历结构中逐一提取元素，放在循环变量中，对于所提取的每个元素执行一次语句块。
+
+其中，遍历结构可以是字符串、文件、组合数据类型或range()函数等，常用的使用方式如下：
+
+1. 循环N次
+
+```python
+for i in range(N):
+    <语句块>
+```
+
+1. 遍历文件fi的每一行
+
+```python
+for line in fi:
+    <语句块>
+```
+
+1. 遍历字符串s
+
+```python
+for c in s:
+    <语句块>
+```
+
+1. 遍历列表ls
+
+```python
+for item in ls:
+    <语句块>
+```
+
+for循环中扩展模式的使用方法：
+
+```python
+for <循环变量> in <遍历结构>:
+    <语句块1>
+else:
+    <语句块2>
+```
+
+在这种扩展模式中，当for循环正常执行后，程序会继续执行else语句中的内容。else语句只在循环正常执行并结束后才执行。因此，可以在`<语句块2>`中放置判断循环执行情况的语句。
+
+#### 无限循环：while语句
+
+使用方法：
+
+```python
+while <条件>:
+    <语句块>
+```
+
+扩展模式使用方法：
+
+```python
+while <条件>:
+    <语句块1>
+else:
+    <语句块2>
+```
+
+性质同上for循环扩展模式
+
+#### 循环保留字：break和continue
+
+break用来跳出最内层循环，脱离该循环后程序从循环代码后执行。每个break语句只有能力跳出当前层次循环
+
+```python
+for s in "BIT":
+    for i in range(10):
+        print(s,end = "")
+        if s == "I":
+            break
+```
+
+执行结果：
+
+```python
+BBBBBBBBBBITTTTTTTTTT
+```
+
+continue用来结束当前当次循环，即不执行continue下面的语句，但不跳出当前循环
+
+```python
+for s in "PYTHON":
+    if s == "T":
+        continue
+    print(s,end = "")
+```
+
+执行结果：
+
+```python
+PYHON
+```
+
+**二者区别**：continue语句只结束本次循环，而**不终止整个循环**的执行；而break语句则是**结束整个循环**过程，不再判断执行循环的条件是否成立。对于两种循环的**扩展模式**，使用continue对else没有影响，而使用break则不会执行else中的语句
