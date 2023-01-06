@@ -614,3 +614,41 @@ PYHON
 ```
 
 **二者区别**：continue语句只结束本次循环，而**不终止整个循环**的执行；而break语句则是**结束整个循环**过程，不再判断执行循环的条件是否成立。对于两种循环的**扩展模式**，使用continue对else没有影响，而使用break则不会执行else中的语句
+
+### 3 random库的使用
+
+random库解析
+
+| 函数                           | 描述                                            |
+| ------------------------------ | ----------------------------------------------- |
+| seed(a = None)                 | 初始化随机数种子，默认值为当前系统时间          |
+| random()                       | 生成一个[0.0, 1.0)之间的随机小数                |
+| randint(a, b)                  | 生成一个[a, b]之间的整数                        |
+| getrandbits(k)                 | 生成一个k比特长度的随机整数                     |
+| randrange(start, stop[, step]) | 生成一个[start, stop)之间以step为步数的随机整数 |
+| uniform(a, b)                  | 生成一个[a, b]之间的随机小数                    |
+| choice(seq)                    | 从序列类型，例如列表中随即返回一个元素          |
+| shuffle(seq)                   | 将序列类型中的元素随机排列，返回打乱后的序列    |
+| sample(pop, k)                 | 从pop类型中随机选取k个元素，以列表类型返回      |
+
+引用方法：`import random`或`from random import *`
+
+生成随机数之前可以通过`seed()`函数制定随机数种子，随机数种子一般是一个整数，只要种子相同，每次生成的随机数序列也相同。
+
+```python
+seed(125)
+print("{}.{}.{}".format(randint(1,10),randint(1,10),randint(1,10)))
+print("{}.{}.{}".format(randint(1,10),randint(1,10),randint(1,10)))
+seed(125)
+print("{}.{}.{}".format(randint(1,10),randint(1,10),randint(1,10)))
+```
+
+运行结果：
+
+```python
+4.4.10
+5.10.3
+4.4.10
+```
+
+上述可以看出，在设定相同种子后，每次调用随机函数生成的随机数是相同的。
