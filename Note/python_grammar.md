@@ -831,7 +831,7 @@ result = func(x2=4, y2=5, z2=6, x1=1, y1=2, z1=3)
 
 #### 函数的返回值
 
-return语句用来退出函数并将程序返回到函数被调用的位置继续执行，且可以同时将0到多个函数运算后的结果返回给函数被调用处的变量，多个值以元组类型保存。函数可以没有return，此时函数并不返回值
+> return语句用来退出函数并将程序返回到函数被调用的位置继续执行，且可以同时将0到多个函数运算后的结果返回给函数被调用处的变量，多个值以元组类型保存。函数可以没有return，此时函数并不返回值
 
 ```python
 def func(a, b):
@@ -891,3 +891,128 @@ Python函数对变量的作用遵守如下原则：
 2. 简单数据类型变量在用global保留字声明后，作为全局变量使用，函数退出后改变里保留且值被函数改变
 3. 对于组合数据类型的全局变量，如果在函数内部没有被真实创建的同名变量，则函数内部可以直接使用并修改全局变量的值
 4. 如果函数内部真实创建了组合数据类型变量，无论是否有同名全局变量，函数仅对局部变量进行操作，函数退出后局部变量被释放，全局变量值不变
+
+### 3 datetime库的使用
+
+#### 概述
+
+> datetime库可以从系统中获得时间，并以用户选择的格式输出
+
+1. date：日期表示类，可以表示年月日等
+2. time：时间表示类，可以表示小时，分钟，秒，毫秒等
+3. datetime：日期和时间表示的类，覆盖上述二者功能
+4. timedelta：与时间间隔有关的类
+5. tzinfo：与时区有关的信息表示类
+
+引用方式如下：
+
+```
+from datetime import datetime
+```
+
+#### 解析
+
+> datetime类的使用方式是首先创建一个datetime对象，然后通过对象的方法和属性显示时间
+
+创建datetime对象的三种方法：`datetime.now()`、`datetime.utcnow()`、`datetime.datetime()`
+
+1. datetime.now()
+
+作用：返回一个datetime类型，表示当前的日期和时间，精确到微秒
+
+参数：无
+
+调用函数：
+
+```python
+from datetime import datetime
+today = datetime.now()
+print(today)
+```
+
+1. datetime.utcnow()
+
+作用：返回一个datetime类型，表示当前日期和时间的UTC（世界标准时间）表示，精确到微秒
+
+参数：无
+
+调用函数：
+
+```python
+from datetime import datetime
+today = datetime.utcnow()
+print(today)
+```
+
+1. datetime.datetime()
+
+datetime.now()和datettime.utcnow()都返回一个datetime类型的对象，也可以直接使用datetime()构造一个日期和时间对象，使用方法如下：
+
+```
+datetime(year, month, day, hour = 0, minute = 0, second = 0, microsecond = 0)
+```
+
+作用：返回一个datetime类型，表示指定的日期和时间，精确到微秒
+
+参数如下：
+
+- year：指定的年份
+- month：指定的月份
+- day：指定的日期
+- hour：指定的小时
+- minute：指定的分钟数
+- second：指定的秒数
+- microsecond：指定的微秒数
+
+其中，hour、minute、second、microsecond参数可以全部或部分省略，使用方式如下：
+
+```python
+from datetime import datetime
+someday = datetime(2023,1,8,22,22)
+print(someday)
+print(someday.min, someday.max, someday.year, someday.month, someday.day, someday.hour, someday.minute)
+```
+
+输出结果：
+
+```python
+2023-01-08 22:22:00
+0001-01-01 00:00:00 9999-12-31 23:59:59.999999 2023 1 8 22 22
+```
+
+这里的someday是一个对象，可以调用方法来返回对象的属性
+
+常用的时间格式化方法
+
+| 属性                     | 描述                                          |
+| ------------------------ | --------------------------------------------- |
+| someday.isoformat()      | 采用ISO 8601标准显示时间                      |
+| someday.isoweekday()     | 根据日期计算星期后返回1~7，对应星期一到星期日 |
+| someday.strftime(format) | 根据格式化字符串format进行格式显示的方法      |
+
+```python
+someday = datetime(2023,1,8,22,22,32,7)
+print(someday)
+print(someday.isoformat(), someday.isoweekday(), someday.strftime("%Y-%m-%d %H:%M:%S"))
+```
+
+strftime()方法的格式化控制符
+
+| 格式化字符串 | 日期/时间     | 值范围和实例             |
+| ------------ | ------------- | ------------------------ |
+| %Y           | 年份          | 0001~9999，1900          |
+| %m           | 月份          | 01~12，10                |
+| %B           | 月名          | January~December，April  |
+| %b           | 月名缩写      | Jan~Dec，Apr             |
+| %d           | 日期          | 01~31，25                |
+| %A           | 星期          | Monday~Sunday，Wednesday |
+| %a           | 星期缩写      | Mon~Sun，Wed             |
+| %H           | 小时（24h制） | 00~23，12                |
+| %M           | 分钟          | 00~59，26                |
+| %S           | 秒            | 00~59，26                |
+| %x           | 日期          | 月/日/年，04/04/2023     |
+| %X           | 时间          | 时:分:秒，19:09:31       |
+
+strftime()格式化字符串的数字左侧会自动补0，也可以与print()的格式化函数一起使用
+
+> datetime库主要用于对时间的表示，从格式化角度掌握strftime()函数已经能够处理很多情况。
