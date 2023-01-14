@@ -1211,3 +1211,114 @@ vlist[1: 3]子序列包含两个元素，对其赋值却给了3个元素，并�
 for <任意变量名> in <列表名>:
     <语句块>
 ```
+
+### 3 字典类型和操作
+
+> 字典是包含0个活多个键值对的集合，没有长度限制，可以根据键索引值的内容
+
+#### 字典类型的概念
+
+列表的索引模式：`<整数序号>`查找`<被索引内容>`
+
+字典可以通过大括号（{}）建立，建立模式如下：
+
+```python
+{<键1>:<值1>,<键2>:<值2>, ... , <键n>:<值n>}
+```
+
+其中，键和值通过冒号连接，不同键值对通过逗号隔开。字典类型也具有和集合类似的性质，即键值对之间没有顺序且不能重复。
+
+一般来说，字典中键值对的访问模式如下，采用中括号格式：
+
+```
+<值> = <字典变量>[<键>]
+```
+
+#### 字典类型的操作
+
+```python
+D_country = {"China":"Beijing","USA":"Washington","France":"Paris"}
+print(D_country)
+print(D_country["China"])
+D_country["China"] = "BigBeijing"
+print(D_country)
+```
+
+也可以直接使用大括号（{}）创建一个空的字典，并它通过中括号（[]）向其增加元素
+
+```python
+Dp = {}
+Dp["2^10"] = 1024
+print(Dp["2^10"])
+```
+
+字典类型的函数和方法
+
+| 函数和方法               | 描述                                                   |
+| ------------------------ | ------------------------------------------------------ |
+| <d>.keys()               | 返回所有键信息                                         |
+| <d>.values()             | 返回所有值信息                                         |
+| <d>.items()              | 返回所有键值对                                         |
+| <d>.get(<key>,<default>) | 键存在则返回相应值，否则返回默认值                     |
+| <d>.pop(<key>,<default>) | 键存在则返回相应值，同时删除键值对，否则返回默认值     |
+| <d>.popitem()            | 随机从字典中取出一个键值对，以元组(key, value)形式返回 |
+| <d>.clear()              | 删除所有键值对                                         |
+| del <d>[<key>]           | 删除字典中某一个键值对                                 |
+| <key> in <d>             | 如果键在字典中则返回True，否则返回False                |
+
+```python
+D_country = {"China":"Beijing","USA":"Washington","France":"Paris"}
+print(D_country)
+print(D_country.keys())
+print(list(D_country.values()))
+print(D_country.items())
+print("China" in D_country)
+print(D_country.get("USA", "Sydney")) # 美国在字典中存在，则不返回悉尼
+print(D_country.get("Australia", "Sydney")) # 澳大利亚在字典中不存在，故返回悉尼
+```
+
+输出结果：
+
+```python
+{'China': 'Beijing', 'USA': 'Washington', 'France': 'Paris'}
+dict_keys(['China', 'USA', 'France'])
+['Beijing', 'Washington', 'Paris']
+dict_items([('China', 'Beijing'), ('USA', 'Washington'), ('France', 'Paris')])
+True
+Washington
+Sydney
+```
+
+如果希望keys(), values()和items()方法返回列表类型，可以采用list()函数将返回值转换成列表
+
+字典也可以通过`for-in`语句对其元素进行遍历，基本语法结构如下：
+
+```python
+for <变量名> in <字典名>:
+	<语句块>
+```
+
+由于键值对中的键相当于索引，因此，for循环返回的变量名是字典的索引值。如果需要获得键对应的值，可以在语句块中通过get()方法获得。
+
+```python
+for key in D_country:
+    print(key)
+    print(D_country.get(key))
+```
+
+输出结果：
+
+```python
+China
+Beijing
+USA
+Washington
+France
+Paris
+```
+
+字典的基本原则：
+
+1. 字典是一个键值对的集合，该集合以键为索引，一个键信息只对应一个值信息
+2. 字典中元素以键信息为索引访问
+3. 字典长度是可变的，可以通过键信息赋值实现增加或修改键值对
